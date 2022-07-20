@@ -6,4 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DailyNotes.Application\DailyNotes.Application.csproj" />
+    <ProjectReference Include="..\DailyNotes.Contracts\DailyNotes.Contracts.csproj" />
+    <ProjectReference Include="..\DailyNotes.DAL\DailyNotes.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
