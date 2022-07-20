@@ -14,4 +14,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DailyNotes.Contracts\DailyNotes.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

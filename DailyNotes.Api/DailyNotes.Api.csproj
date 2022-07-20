@@ -16,4 +16,8 @@
     <ProjectReference Include="..\DailyNotes.DAL\DailyNotes.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
