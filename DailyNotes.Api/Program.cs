@@ -15,7 +15,10 @@ var app = builder.Build();
 
     app.Run(async (context) =>
     {
-
+        if (context.Request.Path == "/")
+        {
+            context.Response.Redirect("swagger");
+        }
     });
 
     app.Run();
