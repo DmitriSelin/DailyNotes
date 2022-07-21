@@ -6,6 +6,6 @@ namespace DailyNotes.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-         
+        
     }
 }
