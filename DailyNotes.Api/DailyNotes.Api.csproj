@@ -13,11 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DailyNotes.Application\DailyNotes.Application.csproj" />
     <ProjectReference Include="..\DailyNotes.Contracts\DailyNotes.Contracts.csproj" />
-    <ProjectReference Include="..\DailyNotes.DAL\DailyNotes.DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\DailyNotes.DAL\DailyNotes.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
