@@ -1,8 +1,15 @@
+using DailyNotes.Application;
+using DailyNotes.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddControllers();
     builder.Services.AddSwaggerGen();
+
+    builder.Services
+        .AppApplication()
+        .AddInfrastructure();
 }
 
 var app = builder.Build();
