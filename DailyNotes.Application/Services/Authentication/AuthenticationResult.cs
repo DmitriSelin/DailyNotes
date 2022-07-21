@@ -1,6 +1,6 @@
-﻿namespace DailyNotes.Contracts.Authentication
+﻿namespace DailyNotes.Application.Services.Authentication
 {
-    public class AuthenticationResponse
+    public class AuthenticationResult
     {
         public Guid Id { get; set; }
 
@@ -14,8 +14,8 @@
 
         public string Token { get; set; }
 
-        public AuthenticationResponse(Guid id, string firstName, string lastName, 
-                                      string email, string password, string token)
+        public AuthenticationResult(Guid id, string firstName, string lastName,
+                                    string email, string password, string token)
         {
             Id = id;
             FirstName = firstName;
