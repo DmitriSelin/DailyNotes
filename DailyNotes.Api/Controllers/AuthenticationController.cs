@@ -4,7 +4,7 @@ namespace DailyNotes.Api.Controllers
 {
     [Route("auth")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         
     }

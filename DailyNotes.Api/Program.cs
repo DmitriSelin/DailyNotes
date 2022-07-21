@@ -12,11 +12,11 @@ var app = builder.Build();
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.Run(async (context) =>
+    {
+
+    });
+
+    app.Run();
 }
-
-app.Run(async (context) =>
-{
-    
-});
-
-app.Run();
