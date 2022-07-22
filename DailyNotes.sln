@@ -5,17 +5,13 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyNotes.Api", "DailyNotes.Api\DailyNotes.Api.csproj", "{C9D3B1CF-98DC-4480-B3DC-D4C72D6DF925}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CDA6AB69-CECA-4F57-9443-A45F4B21124A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyNotes.Domain", "DailyNotes.Domain\DailyNotes.Domain.csproj", "{D3695F50-33D1-4CE2-8B36-4E7A33968D2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyNotes.Application", "DailyNotes.Application\DailyNotes.Application.csproj", "{0A05D396-6AD0-42A8-B279-4F7F4B7D80F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyNotes.Contracts", "DailyNotes.Contracts\DailyNotes.Contracts.csproj", "{D1D8B5DE-B9CB-4485-B24F-CA4D52F51D5C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{07A4AE3E-8AFF-49F2-B985-43E7ADEC1BE9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyNotes.Infrastructure", "DailyNotes.Infrastructure\DailyNotes.Infrastructure.csproj", "{F8FBF6A2-150B-4BFF-986D-A649E18FE93F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DailyNotes.Infrastructure", "DailyNotes.Infrastructure\DailyNotes.Infrastructure.csproj", "{F8FBF6A2-150B-4BFF-986D-A649E18FE93F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,13 +42,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C9D3B1CF-98DC-4480-B3DC-D4C72D6DF925} = {CDA6AB69-CECA-4F57-9443-A45F4B21124A}
-		{D3695F50-33D1-4CE2-8B36-4E7A33968D2A} = {CDA6AB69-CECA-4F57-9443-A45F4B21124A}
-		{0A05D396-6AD0-42A8-B279-4F7F4B7D80F5} = {CDA6AB69-CECA-4F57-9443-A45F4B21124A}
-		{D1D8B5DE-B9CB-4485-B24F-CA4D52F51D5C} = {CDA6AB69-CECA-4F57-9443-A45F4B21124A}
-		{F8FBF6A2-150B-4BFF-986D-A649E18FE93F} = {CDA6AB69-CECA-4F57-9443-A45F4B21124A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EBFBB820-1A55-48F4-B8D0-00D62462ECB8}
