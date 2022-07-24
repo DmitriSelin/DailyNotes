@@ -3,8 +3,8 @@ using DailyNotes.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
     builder.Services
@@ -20,13 +20,8 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
-    app.Run(async (context) =>
-    {
-        if (context.Request.Path == "/")
-        {
-            context.Response.Redirect("swagger");
-        }
-    });
+    app.UseHttpsRedirection();
+    app.MapControllers();
 
     app.Run();
 }
