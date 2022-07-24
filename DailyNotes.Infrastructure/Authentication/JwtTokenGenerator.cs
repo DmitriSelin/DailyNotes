@@ -1,4 +1,5 @@
 ﻿using DailyNotes.Application.Common.Interfaces.Authentication;
+using DailyNotes.Application.Common.Interfaces.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -8,6 +9,13 @@ namespace DailyNotes.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
+        private readonly IDateTimeProvider _dateTimeProvider;
+
+        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider)
+        {
+            _dateTimeProvider = dateTimeProvider;
+        }
+
         public string GenerateToken(Guid userId, string firstName, string lastName)
         {
             var signingCredentials = new SigningCredentials(
@@ -25,7 +33,7 @@ namespace DailyNotes.Infrastructure.Authentication
 
             var securityToken = new JwtSecurityToken(
                 issuer: "DailyNotes",
-                expires: DateTime.Now.AddMinutes(3),
+                expires: _dateTimeProvider.UtcNow.AddMinutes(5),
                 claims: claims,
                 signingCredentials: signingCredentials);
 
