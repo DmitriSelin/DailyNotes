@@ -14,10 +14,10 @@ namespace DailyNotes.Infrastructure.Authentication
 
         private readonly JwtSettings _jwtSettings;
 
-        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtSettings)
+        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions)
         {
             _dateTimeProvider = dateTimeProvider;
-            _jwtSettings = jwtSettings.Value;
+            _jwtSettings = jwtOptions.Value;
         }
 
         public string GenerateToken(Guid userId, string firstName, string lastName)
