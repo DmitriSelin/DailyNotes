@@ -23,9 +23,9 @@ namespace DailyNotes.Api.Controllers
                 request.Email, request.Password);
 
             var response = new AuthenticationResponse(
-                authenticationResult.Id, authenticationResult.FirstName,
-                authenticationResult.LastName, authenticationResult.Email,
-                authenticationResult.Password, authenticationResult.Token);
+                authenticationResult.User.Id, authenticationResult.User.FirstName,
+                authenticationResult.User.LastName, authenticationResult.User.Email,
+                authenticationResult.User.Password, authenticationResult.Token);
 
             return Ok(response);
         }
@@ -36,9 +36,9 @@ namespace DailyNotes.Api.Controllers
             var authenticationResult = _authenticationService.Login(request.Email, request.Password);
 
             var response = new AuthenticationResponse(
-                authenticationResult.Id, authenticationResult.FirstName,
-                authenticationResult.LastName, authenticationResult.Email,
-                authenticationResult.Password, authenticationResult.Token);
+                authenticationResult.User.Id, authenticationResult.User.FirstName,
+                authenticationResult.User.LastName, authenticationResult.User.Email,
+                authenticationResult.User.Password, authenticationResult.Token);
 
             return Ok(response);
         }

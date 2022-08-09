@@ -1,5 +1,6 @@
 ﻿using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Common.Persistence;
+using DailyNotes.Domain.Entities;
 using System;
 
 namespace DailyNotes.Application.Services.Authentication
@@ -17,7 +18,7 @@ namespace DailyNotes.Application.Services.Authentication
 
         public AuthenticationResult Login(string email, string password)
         {
-            var user = _userRepository.GetUserByEmail(email);
+            User? user = _userRepository.GetUserByEmail(email);
 
             if (user == null)
             {
@@ -31,12 +32,14 @@ namespace DailyNotes.Application.Services.Authentication
 
             string? token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
 
-            return new AuthenticationResult(Guid.NewGuid(), user.FirstName, user.LastName, email, password, token);
+            _userRepository.AddUser(user);
+
+            return new AuthenticationResult(user, token);
         }
 
         public AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
-            var user = _userRepository.GetUserByEmail(email);
+            User? user = _userRepository.GetUserByEmail(email);
 
             if (user != null)
             {
@@ -47,7 +50,7 @@ namespace DailyNotes.Application.Services.Authentication
 
             string? token = _jwtTokenGenerator.GenerateToken(userId, firstName, lastName);
 
-            return new AuthenticationResult(userId, firstName, lastName, email, password, token);
+            return new AuthenticationResult(user, token);
         }
     }
 }
