@@ -24,7 +24,7 @@ namespace DailyNotes.Api.Controllers
 
             var response = new AuthenticationResponse(
                 authenticationResult.Id, authenticationResult.FirstName,
-                authenticationResult.LastName, authenticationResult.Email, 
+                authenticationResult.LastName, authenticationResult.Email,
                 authenticationResult.Password, authenticationResult.Token);
 
             return Ok(response);
