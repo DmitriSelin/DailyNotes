@@ -1,6 +1,8 @@
 ﻿using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Common.Interfaces.Services;
+using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Infrastructure.Authentication;
+using DailyNotes.Infrastructure.Persistence;
 using DailyNotes.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,8 @@ namespace DailyNotes.Infrastructure
 
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

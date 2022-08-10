@@ -30,9 +30,9 @@ namespace DailyNotes.Application.Services.Authentication
                 throw new Exception("Not correct password");
             }
 
-            string? token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
-
             _userRepository.AddUser(user);
+
+            string? token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
 
             return new AuthenticationResult(user, token);
         }
