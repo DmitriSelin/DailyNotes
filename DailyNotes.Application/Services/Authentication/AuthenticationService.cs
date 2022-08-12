@@ -1,7 +1,6 @@
 ﻿using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Domain.Entities;
-using System;
 
 namespace DailyNotes.Application.Services.Authentication
 {
