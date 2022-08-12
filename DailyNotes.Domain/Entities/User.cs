@@ -14,9 +14,9 @@
 
         public User() { }
 
-        public User(string firstName, string lastName, string email, string password)
+        public User(Guid id, string firstName, string lastName, string email, string password)
         {
-            Id = Guid.NewGuid();
+            Id = Id;
             FirstName = firstName;
             LastName = lastName;
             Email = email;

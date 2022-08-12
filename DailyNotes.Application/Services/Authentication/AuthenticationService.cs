@@ -30,8 +30,6 @@ namespace DailyNotes.Application.Services.Authentication
                 throw new Exception("Not correct password");
             }
 
-            _userRepository.AddUser(user);
-
             string? token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
 
             return new AuthenticationResult(user, token);
@@ -47,6 +45,10 @@ namespace DailyNotes.Application.Services.Authentication
             }
 
             var userId = Guid.NewGuid();
+
+            user = new User(userId, firstName, lastName, email, password);
+
+            _userRepository.AddUser(user);
 
             string? token = _jwtTokenGenerator.GenerateToken(userId, firstName, lastName);
 
