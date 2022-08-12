@@ -11,7 +11,7 @@ namespace DailyNotes.Infrastructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=DailyNotesDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=DIMITRI\SQLEXPRESS;Database=DailyNotesDb;Trusted_Connection=True;");
         }
     }
 }
