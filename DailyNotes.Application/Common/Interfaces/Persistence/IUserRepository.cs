@@ -6,6 +6,6 @@ namespace DailyNotes.Application.Common.Persistence
     {
         User? GetUserByEmail(string email);
 
-        User AddUser(User user);
+        void AddUser(User user);
     }
 }
