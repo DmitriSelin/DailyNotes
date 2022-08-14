@@ -2,11 +2,11 @@
 {
     public static class MiddlewareDependencyInjection
     {
-        public static IApplicationBuilder AddCustomMiddlewares(this IApplicationBuilder buider)
+        public static IApplicationBuilder AddCustomMiddlewares(this IApplicationBuilder builder)
         {
-            buider.UseMiddleware<AuthenticationMiddleware>();
+            builder.UseMiddleware<AuthenticationMiddleware>();
 
-            return buider;
+            return builder;
         }
     }
 }
