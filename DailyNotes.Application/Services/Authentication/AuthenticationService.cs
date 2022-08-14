@@ -40,7 +40,7 @@ namespace DailyNotes.Application.Services.Authentication
 
             if (user != null)
             {
-                throw new Exception("User with the same email alredy exists");
+                throw new Exception("User with the same email already exists");
             }
 
             var userId = Guid.NewGuid();

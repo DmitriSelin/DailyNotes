@@ -1,3 +1,4 @@
+using DailyNotes.Api.Middlewares;
 using DailyNotes.Application;
 using DailyNotes.Infrastructure;
 
@@ -19,6 +20,8 @@ var app = builder.Build();
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.AddCustomMiddlewares();
 
     app.UseHttpsRedirection();
     app.MapControllers();
