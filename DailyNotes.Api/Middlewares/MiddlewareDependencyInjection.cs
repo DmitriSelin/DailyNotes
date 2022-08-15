@@ -4,7 +4,7 @@
     {
         public static IApplicationBuilder AddCustomMiddlewares(this IApplicationBuilder builder)
         {
-            builder.UseMiddleware<AuthenticationMiddleware>();
+            builder.UseMiddleware<ErrorHandlingMiddleware>();
 
             return builder;
         }

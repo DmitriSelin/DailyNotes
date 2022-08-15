@@ -3,14 +3,14 @@ using System.Text.Json;
 
 namespace DailyNotes.Api.Middlewares
 {
-    public class AuthenticationMiddleware
+    public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public AuthenticationMiddleware(RequestDelegate next) =>
+        public ErrorHandlingMiddleware(RequestDelegate next) =>
             _next = next;
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task Invoke(HttpContext context)
         {
             try
             {
