@@ -3,18 +3,18 @@ using System.Text.Json;
 
 namespace DailyNotes.Api.Middlewares
 {
-    public class ErrorHandlingMiddleware
+    public class ExceptionsHandlingMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public ErrorHandlingMiddleware(RequestDelegate next) =>
+        public ExceptionsHandlingMiddleware(RequestDelegate next) =>
             _next = next;
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
-                await _next(context);
+                await _next.Invoke(context);
             }
             catch(Exception exception)
             {

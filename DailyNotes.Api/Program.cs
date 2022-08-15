@@ -21,9 +21,7 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
-    //app.AddCustomMiddlewares();
-
-    app.UseMiddleware<ErrorHandlingMiddleware>();
+    app.AddCustomMiddleware();
 
     app.UseHttpsRedirection();
     app.MapControllers();

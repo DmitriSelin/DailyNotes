@@ -2,11 +2,11 @@
 {
     public static class MiddlewareDependencyInjection
     {
-        public static IApplicationBuilder AddCustomMiddlewares(this IApplicationBuilder builder)
+        public static IApplicationBuilder AddCustomMiddleware(this IApplicationBuilder app)
         {
-            builder.UseMiddleware<ErrorHandlingMiddleware>();
+            app.UseMiddleware<ExceptionsHandlingMiddleware>();
 
-            return builder;
+            return app;
         }
     }
 }
