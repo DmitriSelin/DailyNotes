@@ -29,7 +29,7 @@ namespace DailyNotes.Application.Services.Authentication
                 throw new Exception("Not correct password");
             }
 
-            string? token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
+            string? token = _jwtTokenGenerator.GenerateToken(user);
 
             return new AuthenticationResult(user, token);
         }
@@ -49,7 +49,7 @@ namespace DailyNotes.Application.Services.Authentication
 
             _userRepository.AddUser(user);
 
-            string? token = _jwtTokenGenerator.GenerateToken(userId, firstName, lastName);
+            string? token = _jwtTokenGenerator.GenerateToken(user);
 
             return new AuthenticationResult(user, token);
         }
