@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using DailyNotes.Application.Common.Exceptions;
+using System.Net;
 using System.Text.Json;
 
 namespace DailyNotes.Api.Middlewares
@@ -29,9 +30,9 @@ namespace DailyNotes.Api.Middlewares
 
             switch (exception)
             {
-                case Exception simpleException:
+                case UserException userException:
                     code = HttpStatusCode.Conflict;
-                    result = JsonSerializer.Serialize(new {error = simpleException.Message} );
+                    result = JsonSerializer.Serialize(new {error = userException.Message} );
                     break;
             }
 

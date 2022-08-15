@@ -1,4 +1,5 @@
-﻿using DailyNotes.Application.Common.Interfaces.Authentication;
+﻿using DailyNotes.Application.Common.Exceptions;
+using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Domain.Entities;
 
@@ -21,12 +22,12 @@ namespace DailyNotes.Application.Services.Authentication
 
             if (user == null)
             {
-                throw new Exception("User with the same email does not exists");
+                throw new UserException("User with the same email does not exists");
             }
 
             if (user.Password != password)
             {
-                throw new Exception("Not correct password");
+                throw new UserException("Not correct password");
             }
 
             string? token = _jwtTokenGenerator.GenerateToken(user);
@@ -40,7 +41,7 @@ namespace DailyNotes.Application.Services.Authentication
 
             if (user != null)
             {
-                throw new Exception("User with the same email already exists");
+                throw new UserException("User with the same email already exists");
             }
 
             var userId = Guid.NewGuid();
