@@ -12,6 +12,8 @@
 
         public string Password { get; set; } = null!;
 
+        public virtual ICollection<Note> Notes { get; set; } = null!;
+
         public User() { }
 
         public User(Guid id, string firstName, string lastName, string email, string password)
