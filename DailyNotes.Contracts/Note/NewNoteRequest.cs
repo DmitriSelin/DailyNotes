@@ -2,22 +2,22 @@
 {
     public class NewNoteRequest
     {
-        public Guid UserId { get; set; }
-
         public string Name { get; set; } = null!;
 
         public string Text { get; set; } = null!;
 
         public DateTime CreationTime { get; set; }
 
+        public string Token { get; set; } = null!;
+
         public NewNoteRequest() { }
 
-        public NewNoteRequest(Guid userId, string name, string text, DateTime creationTime)
+        public NewNoteRequest(string name, string text, DateTime creationTime, string token)
         {
-            UserId = userId;
             Name = name;
             Text = text;
             CreationTime = creationTime;
+            Token = token;
         }
 
         public override string ToString()

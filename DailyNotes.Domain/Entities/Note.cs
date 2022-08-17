@@ -16,12 +16,12 @@
 
         public Note() { }
 
-        public Note(Guid id, string name, string text, DateTime creationDate)
+        public Note(Guid id, string name, string text)
         {
             Id = id;
             Name = name;
             Text = text;
-            CreationDate = creationDate;
+            CreationDate = DateTime.Now.Date;
             LikesCount = 0;
         }
 
