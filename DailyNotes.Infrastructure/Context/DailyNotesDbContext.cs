@@ -9,6 +9,8 @@ namespace DailyNotes.Infrastructure.Context
 
         public DbSet<User> Users => Set<User>();
 
+        public DbSet<Note> Notes => Set<Note>();
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DIMITRI\SQLEXPRESS;Database=DailyNotesDb;Trusted_Connection=True;");
