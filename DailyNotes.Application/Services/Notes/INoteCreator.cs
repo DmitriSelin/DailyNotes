@@ -2,6 +2,6 @@
 {
     public interface INoteCreator
     {
-        NoteResult CreateNewNote(string name, string text, DateTime creationTime);
+        NoteResult CreateNewNote(string name, string text);
     }
 }

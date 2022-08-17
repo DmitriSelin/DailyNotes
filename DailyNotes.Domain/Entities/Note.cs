@@ -21,7 +21,7 @@
             Id = id;
             Name = name;
             Text = text;
-            CreationDate = DateTime.Now.Date;
+            CreationDate = DateTime.Now;
             LikesCount = 0;
         }
 
