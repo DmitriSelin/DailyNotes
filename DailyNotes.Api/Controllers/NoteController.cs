@@ -15,14 +15,15 @@ namespace DailyNotes.Api.Controllers
             _noteCreator = noteCreator;
         }
 
+        
         [HttpPost("myWorks")]
-        public IActionResult CreateNewNote(CreateNoteRequest note)
+        public IActionResult CreateNewNote([FromHeader] string jwtToken, CreateNoteRequest noteRequest)
         {
-            var noteResult = _noteCreator.CreateNewNote(note.Name, note.Text);
+            var note = _noteCreator.CreateNewNote(noteRequest.Name, noteRequest.Text);                        
 
             var noteResponse = new NoteResponse(
-                noteResult.Note.Id, noteResult.Note.Name,
-                noteResult.Note.CreationDate.ToString());
+                note.Id, note.Name,
+                note.CreationDate.ToString());
 
             return Ok(noteResponse);
         }

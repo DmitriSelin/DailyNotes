@@ -1,7 +1,9 @@
-﻿namespace DailyNotes.Application.Services.Notes
+﻿using DailyNotes.Domain.Entities;
+
+namespace DailyNotes.Application.Services.Notes
 {
     public interface INoteCreator
     {
-        NoteResult CreateNewNote(string name, string text);
+        Note CreateNewNote(string name, string text);
     }
 }

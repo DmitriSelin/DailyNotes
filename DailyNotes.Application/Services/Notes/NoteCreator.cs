@@ -5,13 +5,11 @@ namespace DailyNotes.Infrastructure.Services
 {
     public class NoteCreator : INoteCreator
     {
-        public NoteResult CreateNewNote(string name, string text)
+        public Note CreateNewNote(string name, string text)
         {
             var noteId = Guid.NewGuid();
 
-            var note = new Note(noteId, name, text);
-
-            return new NoteResult(note, "token");
+            return new Note(noteId, name, text);
         }
     }
 }

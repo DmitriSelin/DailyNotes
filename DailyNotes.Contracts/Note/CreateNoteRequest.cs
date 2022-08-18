@@ -6,15 +6,12 @@
 
         public string Text { get; set; } = null!;
 
-        public string Token { get; set; } = null!;
-
         public CreateNoteRequest() { }
 
-        public CreateNoteRequest(string name, string text, string token)
+        public CreateNoteRequest(string name, string text)
         {
             Name = name;
             Text = text;
-            Token = token;
         }
 
         public override string ToString()
