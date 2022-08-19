@@ -37,6 +37,8 @@ namespace DailyNotes.Infrastructure.Services
 
             var note = new Note(noteId, name, text);
 
+            note.User = user;
+
             _noteRepository.AddNote(note);
 
             return note;
