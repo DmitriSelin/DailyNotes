@@ -19,6 +19,7 @@ namespace DailyNotes.Infrastructure
 
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            services.AddSingleton<IJwtTokenDecoder, JwtTokenDecoder>();
 
             services.AddDbContext<DailyNotesDbContext>();
 

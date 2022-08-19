@@ -5,7 +5,7 @@ namespace DailyNotes.Infrastructure.Services
 {
     public class NoteCreator : INoteCreator
     {
-        public Note CreateNewNote(string name, string text)
+        public Note CreateNewNote(string name, string text, string token)
         {
             var noteId = Guid.NewGuid();
 

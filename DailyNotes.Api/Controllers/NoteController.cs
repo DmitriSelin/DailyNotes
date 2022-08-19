@@ -19,7 +19,7 @@ namespace DailyNotes.Api.Controllers
         [HttpPost("myWorks")]
         public IActionResult CreateNewNote([FromHeader] string authenticationToken, CreateNoteRequest noteRequest)
         {
-            var note = _noteCreator.CreateNewNote(noteRequest.Name, noteRequest.Text);                        
+            var note = _noteCreator.CreateNewNote(noteRequest.Name, noteRequest.Text, authenticationToken);
 
             var noteResponse = new NoteResponse(
                 note.Id, note.Name,
