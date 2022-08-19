@@ -1,4 +1,5 @@
-﻿using DailyNotes.Application.Common.Interfaces.Authentication;
+﻿using DailyNotes.Application.Common.Exceptions;
+using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Application.Services.Notes;
 using DailyNotes.Domain.Entities;
@@ -20,6 +21,15 @@ namespace DailyNotes.Infrastructure.Services
         public Note CreateNewNote(string name, string text, string token)
         {
             JwtSecurityToken jwtToken = _jwtTokenDecoder.Decode(token);
+
+            var userId = Guid.Parse(jwtToken.Subject);
+
+            User? user = _userRepository.GetUserById(userId);
+
+            if (user == null)
+            {
+                throw new UserException("This user does not exists");
+            }
 
             var noteId = Guid.NewGuid();
 

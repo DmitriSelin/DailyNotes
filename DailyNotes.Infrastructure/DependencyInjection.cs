@@ -1,4 +1,5 @@
 ﻿using DailyNotes.Application.Common.Interfaces.Authentication;
+using DailyNotes.Application.Common.Interfaces.Persistence;
 using DailyNotes.Application.Common.Interfaces.Services;
 using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Infrastructure.Authentication;
@@ -24,6 +25,7 @@ namespace DailyNotes.Infrastructure
             services.AddDbContext<DailyNotesDbContext>();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<INoteRepository, NoteRepository>();
 
             return services;
         }
