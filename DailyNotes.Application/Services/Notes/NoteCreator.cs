@@ -1,5 +1,6 @@
 ﻿using DailyNotes.Application.Common.Exceptions;
 using DailyNotes.Application.Common.Interfaces.Authentication;
+using DailyNotes.Application.Common.Interfaces.Persistence;
 using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Application.Services.Notes;
 using DailyNotes.Domain.Entities;
@@ -11,11 +12,13 @@ namespace DailyNotes.Infrastructure.Services
     {
         private readonly IJwtTokenDecoder _jwtTokenDecoder;
         private readonly IUserRepository _userRepository;
+        private readonly INoteRepository _noteRepository;
 
-        public NoteCreator(IJwtTokenDecoder jwtTokenDecoder, IUserRepository userRepository)
+        public NoteCreator(IJwtTokenDecoder jwtTokenDecoder, IUserRepository userRepository, INoteRepository noteRepository)
         {
             _jwtTokenDecoder = jwtTokenDecoder;
             _userRepository = userRepository;
+            _noteRepository = noteRepository;
         }
 
         public Note CreateNewNote(string name, string text, string token)
@@ -33,7 +36,11 @@ namespace DailyNotes.Infrastructure.Services
 
             var noteId = Guid.NewGuid();
 
-            return new Note(noteId, name, text);
+            var note = new Note(noteId, name, text);
+
+            _noteRepository.AddNote(note);
+
+            return note;
         }
     }
 }
