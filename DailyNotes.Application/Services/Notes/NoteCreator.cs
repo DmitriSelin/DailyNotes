@@ -4,7 +4,6 @@ using DailyNotes.Application.Common.Interfaces.Persistence;
 using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Application.Services.Notes;
 using DailyNotes.Domain.Entities;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace DailyNotes.Infrastructure.Services
 {
@@ -23,7 +22,7 @@ namespace DailyNotes.Infrastructure.Services
 
         public Note CreateNewNote(string name, string text, string token)
         {
-            JwtSecurityToken jwtToken = _jwtTokenDecoder.Decode(token);
+            var jwtToken = _jwtTokenDecoder.Decode(token);
 
             var userId = Guid.Parse(jwtToken.Subject);
 

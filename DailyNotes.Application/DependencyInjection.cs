@@ -11,7 +11,7 @@ namespace DailyNotes.Application
         {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
-            services.AddSingleton<INoteCreator, NoteCreator>();
+            services.AddScoped<INoteCreator, NoteCreator>();
 
             return services;
         }
