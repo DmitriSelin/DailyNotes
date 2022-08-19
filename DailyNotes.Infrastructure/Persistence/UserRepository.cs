@@ -20,6 +20,11 @@ namespace DailyNotes.Infrastructure.Persistence
             _dbContext.SaveChanges();
         }
 
+        public User? GetUserById(Guid userId)
+        {
+            return _dbContext.Users.FirstOrDefault(user => user.Id == userId);
+        }
+
         public User? GetUserByEmail(string email)
         {
             return _dbContext.Users.FirstOrDefault(x => x.Email == email);
