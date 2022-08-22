@@ -18,7 +18,7 @@ namespace DailyNotes.Application.Services.Authentication
 
         public AuthenticationResult Login(string email, string password)
         {
-            User? user = _userRepository.GetUserByEmail(email);
+            User? user = _userRepository.GetUserByEmailAsync(email).Result;
 
             if (user == null)
             {
@@ -37,7 +37,7 @@ namespace DailyNotes.Application.Services.Authentication
 
         public AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
-            User? user = _userRepository.GetUserByEmail(email);
+            User? user = _userRepository.GetUserByEmailAsync(email).Result;
 
             if (user != null)
             {
@@ -48,7 +48,7 @@ namespace DailyNotes.Application.Services.Authentication
 
             user = new User(userId, firstName, lastName, email, password);
 
-            _userRepository.AddUser(user);
+            _userRepository.AddUserAsync(user);
 
             string? token = _jwtTokenGenerator.GenerateToken(user);
 

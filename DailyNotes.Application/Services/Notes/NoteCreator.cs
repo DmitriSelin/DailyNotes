@@ -26,7 +26,7 @@ namespace DailyNotes.Infrastructure.Services
 
             var userId = Guid.Parse(jwtToken.Subject);
 
-            User? user = _userRepository.GetUserById(userId);
+            User? user = _userRepository.GetUserByIdAsync(userId).Result;
 
             if (user == null)
             {
@@ -39,7 +39,7 @@ namespace DailyNotes.Infrastructure.Services
 
             note.User = user;
 
-            _noteRepository.AddNote(note);
+            _noteRepository.AddNoteAsync(note);
 
             return note;
         }

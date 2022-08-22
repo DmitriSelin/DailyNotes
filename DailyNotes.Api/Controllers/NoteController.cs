@@ -14,7 +14,6 @@ namespace DailyNotes.Api.Controllers
         {
             _noteCreator = noteCreator;
         }
-
         
         [HttpPost("myWorks")]
         public IActionResult CreateNewNote([FromHeader] string authenticationToken, CreateNoteRequest noteRequest)

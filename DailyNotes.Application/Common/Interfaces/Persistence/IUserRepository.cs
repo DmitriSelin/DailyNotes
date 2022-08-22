@@ -4,10 +4,10 @@ namespace DailyNotes.Application.Common.Persistence
 {
     public interface IUserRepository
     {
-        User? GetUserByEmail(string email);
+        Task<User?> GetUserByEmailAsync(string email);
 
-        User? GetUserById(Guid userId);
+        Task<User?> GetUserByIdAsync(Guid userId);
 
-        void AddUser(User user);
+        Task AddUserAsync(User user);
     }
 }

@@ -13,11 +13,11 @@ namespace DailyNotes.Infrastructure.Persistence
             _dbContext = dbContext;
         }
 
-        public void AddNote(Note note)
+        public async Task AddNoteAsync(Note note)
         {
-            _dbContext.Add(note);
+            await _dbContext.AddAsync(note);
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

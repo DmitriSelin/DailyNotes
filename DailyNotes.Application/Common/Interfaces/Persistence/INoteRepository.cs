@@ -4,6 +4,6 @@ namespace DailyNotes.Application.Common.Interfaces.Persistence
 {
     public interface INoteRepository
     {
-        void AddNote(Note note);
+        Task AddNoteAsync(Note note);
     }
 }

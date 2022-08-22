@@ -13,19 +13,29 @@ namespace DailyNotes.Infrastructure.Persistence
             _dbContext = dbContext;
         }
 
-        public void AddUser(User user)
+        public async Task AddUserAsync(User user)
         {
-            _dbContext.Users.Add(user);
+            await _dbContext.Users.AddAsync(user);
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public User? GetUserById(Guid userId)
+        public async Task<User?> GetUserByIdAsync(Guid userId)
+        {
+            return await Task.Run(() => GetUserById(userId));
+        }
+
+        private User? GetUserById(Guid userId)
         {
             return _dbContext.Users.FirstOrDefault(user => user.Id == userId);
         }
 
-        public User? GetUserByEmail(string email)
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await Task.Run(() => GetUserByEmail(email));
+        }
+
+        private User? GetUserByEmail(string email)
         {
             return _dbContext.Users.FirstOrDefault(x => x.Email == email);
         }
