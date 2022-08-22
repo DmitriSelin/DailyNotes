@@ -34,6 +34,10 @@ namespace DailyNotes.Api.Middlewares
                     code = HttpStatusCode.Conflict;
                     result = JsonSerializer.Serialize(new {error = userException.Message} );
                     break;
+                case ArgumentException argumentException:
+                    code = HttpStatusCode.BadRequest;
+                    result = JsonSerializer.Serialize(new {error = "JWT is not well formed" });
+                    break;
             }
 
             context.Response.ContentType = "application/json";
