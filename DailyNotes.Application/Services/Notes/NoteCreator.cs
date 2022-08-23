@@ -9,35 +9,18 @@ namespace DailyNotes.Infrastructure.Services
 {
     public class NoteCreator : INoteCreator
     {
-        private readonly IJwtTokenDecoder _jwtTokenDecoder;
-        private readonly IUserRepository _userRepository;
         private readonly INoteRepository _noteRepository;
 
-        public NoteCreator(IJwtTokenDecoder jwtTokenDecoder, IUserRepository userRepository, INoteRepository noteRepository)
+        public NoteCreator(INoteRepository noteRepository)
         {
-            _jwtTokenDecoder = jwtTokenDecoder;
-            _userRepository = userRepository;
             _noteRepository = noteRepository;
         }
 
-        public Note CreateNewNote(string name, string text, string token)
+        public Note CreateNewNote(string name, string text)
         {
-            var jwtToken = _jwtTokenDecoder.Decode(token);
-
-            var userId = Guid.Parse(jwtToken.Subject);
-
-            User? user = _userRepository.GetUserByIdAsync(userId).Result;
-
-            if (user == null)
-            {
-                throw new UserException("This user does not exists");
-            }
-
             var noteId = Guid.NewGuid();
 
             var note = new Note(noteId, name, text);
-
-            note.User = user;
 
             _noteRepository.AddNoteAsync(note);
 
