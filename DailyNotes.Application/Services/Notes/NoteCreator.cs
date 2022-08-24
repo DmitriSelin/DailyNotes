@@ -1,7 +1,4 @@
-﻿using DailyNotes.Application.Common.Exceptions;
-using DailyNotes.Application.Common.Interfaces.Authentication;
-using DailyNotes.Application.Common.Interfaces.Persistence;
-using DailyNotes.Application.Common.Persistence;
+﻿using DailyNotes.Application.Common.Interfaces.Persistence;
 using DailyNotes.Application.Services.Notes;
 using DailyNotes.Domain.Entities;
 
