@@ -1,19 +1,18 @@
-﻿using DailyNotes.Domain.Entities;
+﻿using DailyNotes.Application.Common.Interfaces.Persistence;
+using DailyNotes.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DailyNotes.Infrastructure.Context
 {
-    public class DailyNotesDbContext : DbContext
+    public class DailyNotesDbContext : DbContext, IDailyNotesDbContext
     {
-        public DailyNotesDbContext() => Database.EnsureCreated();
-
-        public DbSet<User> Users => Set<User>();
-
-        public DbSet<Note> Notes => Set<Note>();
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DailyNotesDbContext(DbContextOptions<DailyNotesDbContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(@"Server=DIMITRI\SQLEXPRESS;Database=DailyNotesDb;Trusted_Connection=True;");
+            Database.EnsureCreated();
         }
+
+        public DbSet<User> Users { get; set; } = null!;
+
+        public DbSet<Note> Notes { get; set; } = null!;
     }
 }
