@@ -18,4 +18,12 @@
     <ProjectReference Include="..\DailyNotes.Domain\DailyNotes.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Authentication\" />
+    <Folder Include="Authentication\Commands\" />
+    <Folder Include="Authentication\Queries\" />
+    <Folder Include="Notes\Commands\" />
+    <Folder Include="Notes\Queries\" />
+  </ItemGroup>
+
 </Project>
