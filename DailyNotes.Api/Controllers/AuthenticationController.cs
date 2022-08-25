@@ -1,10 +1,12 @@
 ﻿using DailyNotes.Application.Services.Authentication;
 using DailyNotes.Contracts.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DailyNotes.Api.Controllers
 {
     [Route("auth")]
+    [Authorize]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
