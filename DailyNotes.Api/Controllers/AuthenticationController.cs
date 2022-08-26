@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace DailyNotes.Api.Controllers
 {
     [Route("auth")]
-    [Authorize]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
