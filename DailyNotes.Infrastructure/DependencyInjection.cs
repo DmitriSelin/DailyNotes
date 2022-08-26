@@ -32,8 +32,6 @@ namespace DailyNotes.Infrastructure
                 options.UseSqlServer(connectionString);
             });
 
-            services.AddScoped<IDailyNotesDbContext, DailyNotesDbContext>();
-
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INoteRepository, NoteRepository>();
 
