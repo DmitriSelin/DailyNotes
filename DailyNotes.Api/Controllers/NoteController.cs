@@ -1,6 +1,7 @@
-﻿using DailyNotes.Application.Services.Notes;
+﻿using MediatR;
 using DailyNotes.Contracts.Note;
 using Microsoft.AspNetCore.Mvc;
+using DailyNotes.Application.Notes.Commands;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -8,17 +9,19 @@ namespace DailyNotes.Api.Controllers
     [ApiController]
     public class NoteController : ControllerBase
     {
-        private readonly INoteCreator _noteCreator;
+        private readonly ISender _sender;
 
-        public NoteController(INoteCreator noteCreator)
+        public NoteController(ISender sender)
         {
-            _noteCreator = noteCreator;
+            _sender = sender;
         }
         
         [HttpPost("myWorks")]
-        public IActionResult CreateNewNote(CreateNoteRequest noteRequest)
+        public async Task<IActionResult> CreateNewNote(CreateNoteRequest noteRequest)
         {
-            var note = _noteCreator.CreateNewNote(noteRequest.Name, noteRequest.Text);
+            var noteCommand = new CreateNoteCommand(Guid.NewGuid(), noteRequest.Name, noteRequest.Text);
+
+            var note = await _sender.Send(noteCommand);
 
             var noteResponse = new NoteResponse(
                 note.Id, note.Name,

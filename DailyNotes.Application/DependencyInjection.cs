@@ -1,7 +1,7 @@
 ﻿using DailyNotes.Application.Services.Authentication;
-using DailyNotes.Application.Services.Notes;
-using DailyNotes.Infrastructure.Services;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace DailyNotes.Application
 {
@@ -11,7 +11,7 @@ namespace DailyNotes.Application
         {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
-            services.AddScoped<INoteCreator, NoteCreator>();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             return services;
         }

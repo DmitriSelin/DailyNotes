@@ -1,9 +1,7 @@
-﻿using MediatR;
+﻿using DailyNotes.Domain.Entities;
+using MediatR;
 
 namespace DailyNotes.Application.Notes.Commands
 {
-    public class CreateNoteCommand : IRequest
-    {
-        public string Name;
-    }
+    public record CreateNoteCommand(Guid UserId, string Name, string Text) : IRequest<Note>;
 }
