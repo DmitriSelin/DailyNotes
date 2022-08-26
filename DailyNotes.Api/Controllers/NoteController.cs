@@ -2,10 +2,12 @@
 using DailyNotes.Contracts.Note;
 using Microsoft.AspNetCore.Mvc;
 using DailyNotes.Application.Notes.Commands;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DailyNotes.Api.Controllers
 {
     [Route("notes")]
+    [Authorize]
     [ApiController]
     public class NoteController : ControllerBase
     {
