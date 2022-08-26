@@ -2,5 +2,8 @@
 
 namespace DailyNotes.Application.Notes.Commands
 {
-    public record CreateNoteCommand(Guid UserId, string Name, string Text) : IRequest;
+    public class CreateNoteCommand : IRequest
+    {
+        public string Name;
+    }
 }
