@@ -3,5 +3,5 @@ using MediatR;
 
 namespace DailyNotes.Application.Notes.Commands.CreateNote
 {
-    public record CreateNoteCommand(Guid UserId, string Name, string Text) : IRequest<Note>;
+    public record CreateNoteCommand(Guid UserId, string Name, string Text) : IRequest<CreateNoteResult>;
 }

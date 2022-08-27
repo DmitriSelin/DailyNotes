@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using DailyNotes.Contracts.Note;
 using Microsoft.AspNetCore.Mvc;
-using DailyNotes.Application.Notes.Commands;
 using Microsoft.AspNetCore.Authorization;
 using DailyNotes.Application.Common.Interfaces.Authentication;
+using DailyNotes.Application.Notes.Commands.CreateNote;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -28,11 +28,11 @@ namespace DailyNotes.Api.Controllers
 
             var noteCommand = new CreateNoteCommand(userId, noteRequest.Name, noteRequest.Text);
 
-            var note = await _sender.Send(noteCommand);
+            var noteResult = await _sender.Send(noteCommand);
 
             var noteResponse = new NoteResponse(
-                note.Id, note.Name,
-                note.CreationDate.ToString());
+                noteResult.Note.Id, noteResult.Note.Name,
+                noteResult.Note.CreationDate.ToString());
 
             return Ok(noteResponse);
         }
