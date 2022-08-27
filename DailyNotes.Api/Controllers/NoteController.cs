@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Notes.Commands.CreateNote;
 using DailyNotes.Application.Notes.Commands.UpdateNote;
+using DailyNotes.Application.Notes.Commands.DeleteNote;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -23,7 +24,7 @@ namespace DailyNotes.Api.Controllers
         }
         
         [HttpPost("myWorks")]
-        public async Task<IActionResult> CreateNewNote(NoteRequest noteRequest)
+        public async Task<IActionResult> CreateNote(NoteRequest noteRequest)
         {
             Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 
@@ -39,13 +40,25 @@ namespace DailyNotes.Api.Controllers
         }
 
         [HttpPut("myWorks")]
-        public async Task<IActionResult> UpdateNote(ChangeNoteRequest note)
+        public async Task<IActionResult> UpdateNote(UpdateNoteRequest note)
         {
             Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 
             var updateNoteCommand = new UpdateNoteCommand(note.NoteId, userId, note.Name, note.Text);
 
             var noteResult = await _sender.Send(updateNoteCommand);
+
+            return Ok();
+        }
+
+        [HttpDelete("myWorks")]
+        public async Task<IActionResult> DeleteNote(Guid noteId)
+        {
+            Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
+
+            var deleteNoteCommand = new DeleteNoteCommand(noteId, userId);
+
+            var noteResult = await _sender.Send(deleteNoteCommand);
 
             return Ok();
         }

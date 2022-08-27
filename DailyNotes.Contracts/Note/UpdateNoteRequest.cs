@@ -1,6 +1,6 @@
 ﻿namespace DailyNotes.Contracts.Note
 {
-    public class ChangeNoteRequest
+    public class UpdateNoteRequest
     {
         public Guid NoteId { get; set; }
 
@@ -8,9 +8,9 @@
 
         public string Text { get; set; } = null!;
 
-        public ChangeNoteRequest() { }
+        public UpdateNoteRequest() { }
 
-        public ChangeNoteRequest(Guid noteId, string name, string text)
+        public UpdateNoteRequest(Guid noteId, string name, string text)
         {
             NoteId = noteId;
             Name = name;
