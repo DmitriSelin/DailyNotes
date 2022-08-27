@@ -1,15 +1,21 @@
-﻿namespace DailyNotes.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DailyNotes.Domain.Entities
 {
     public class User
     {
         public Guid Id { get; set; }
 
+        [StringLength(50, MinimumLength = 2)]
         public string FirstName { get; set; } = null!;
 
+        [StringLength(50, MinimumLength = 2)]
         public string LastName { get; set; } = null!;
 
+        [EmailAddress]
         public string Email { get; set; } = null!;
 
+        [StringLength(50, MinimumLength = 6)]
         public string Password { get; set; } = null!;
 
         public virtual ICollection<Note> Notes { get; set; } = null!;

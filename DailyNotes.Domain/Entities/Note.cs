@@ -1,15 +1,20 @@
-﻿namespace DailyNotes.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DailyNotes.Domain.Entities
 {
     public class Note
     {
         public Guid Id { get; set; }
 
+        [StringLength(50, MinimumLength = 2)]
         public string Name { get; set; } = null!;
 
+        [MinLength(1)]
         public string Text { get; set; } = null!;
 
         public DateTime CreationDate { get; set; }
 
+        [MinLength(0)]
         public int LikesCount { get; set; }
 
         public Guid UserId { get; set; }
