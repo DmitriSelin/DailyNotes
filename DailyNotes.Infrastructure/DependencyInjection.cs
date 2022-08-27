@@ -37,6 +37,8 @@ namespace DailyNotes.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INoteRepository, NoteRepository>();
 
+            services.AddScoped<IJwtTokenDecoder, JwtTokenDecoder>();
+
             return services;
         }
 

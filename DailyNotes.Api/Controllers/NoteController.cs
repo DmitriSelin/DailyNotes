@@ -3,7 +3,7 @@ using DailyNotes.Contracts.Note;
 using Microsoft.AspNetCore.Mvc;
 using DailyNotes.Application.Notes.Commands;
 using Microsoft.AspNetCore.Authorization;
-using DailyNotes.Api.Extensions;
+using DailyNotes.Application.Common.Interfaces.Authentication;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -13,18 +13,20 @@ namespace DailyNotes.Api.Controllers
     public class NoteController : ControllerBase
     {
         private readonly ISender _sender;
+        private readonly IJwtTokenDecoder _jwtTokenDecoder; 
 
-        public NoteController(ISender sender)
+        public NoteController(ISender sender, IJwtTokenDecoder jwtTokenDecoder)
         {
             _sender = sender;
+            _jwtTokenDecoder = jwtTokenDecoder;
         }
         
         [HttpPost("myWorks")]
         public async Task<IActionResult> CreateNewNote(CreateNoteRequest noteRequest)
         {
-            var noteCommand = new CreateNoteCommand(Guid.NewGuid(), noteRequest.Name, noteRequest.Text);
+            Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 
-            var userId = HttpContext.GetUserIdFromJwt();
+            var noteCommand = new CreateNoteCommand(userId, noteRequest.Name, noteRequest.Text);
 
             var note = await _sender.Send(noteCommand);
 
