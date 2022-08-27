@@ -2,7 +2,7 @@
 using DailyNotes.Domain.Entities;
 using MediatR;
 
-namespace DailyNotes.Application.Notes.Commands
+namespace DailyNotes.Application.Notes.Commands.CreateNote
 {
     public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Note>
     {
