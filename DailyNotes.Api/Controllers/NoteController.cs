@@ -3,6 +3,7 @@ using DailyNotes.Contracts.Note;
 using Microsoft.AspNetCore.Mvc;
 using DailyNotes.Application.Notes.Commands;
 using Microsoft.AspNetCore.Authorization;
+using DailyNotes.Api.Extensions;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -22,6 +23,8 @@ namespace DailyNotes.Api.Controllers
         public async Task<IActionResult> CreateNewNote(CreateNoteRequest noteRequest)
         {
             var noteCommand = new CreateNoteCommand(Guid.NewGuid(), noteRequest.Name, noteRequest.Text);
+
+            var userId = HttpContext.GetUserIdFromJwt();
 
             var note = await _sender.Send(noteCommand);
 
