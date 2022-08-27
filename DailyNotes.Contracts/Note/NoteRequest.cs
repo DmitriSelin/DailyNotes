@@ -1,14 +1,14 @@
 ﻿namespace DailyNotes.Contracts.Note
 {
-    public class CreateNoteRequest
+    public class NoteRequest
     {
         public string Name { get; set; } = null!;
 
         public string Text { get; set; } = null!;
 
-        public CreateNoteRequest() { }
+        public NoteRequest() { }
 
-        public CreateNoteRequest(string name, string text)
+        public NoteRequest(string name, string text)
         {
             Name = name;
             Text = text;

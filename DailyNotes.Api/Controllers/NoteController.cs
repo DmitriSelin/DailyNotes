@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Notes.Commands.CreateNote;
+using DailyNotes.Application.Notes.Commands.UpdateNote;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -22,19 +23,31 @@ namespace DailyNotes.Api.Controllers
         }
         
         [HttpPost("myWorks")]
-        public async Task<IActionResult> CreateNewNote(CreateNoteRequest noteRequest)
+        public async Task<IActionResult> CreateNewNote(NoteRequest noteRequest)
         {
             Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 
-            var noteCommand = new CreateNoteCommand(userId, noteRequest.Name, noteRequest.Text);
+            var createNoteCommand = new CreateNoteCommand(userId, noteRequest.Name, noteRequest.Text);
 
-            var noteResult = await _sender.Send(noteCommand);
+            var noteResult = await _sender.Send(createNoteCommand);
 
             var noteResponse = new NoteResponse(
                 noteResult.Note.Id, noteResult.Note.Name,
                 noteResult.Note.CreationDate.ToString());
 
             return Ok(noteResponse);
+        }
+
+        [HttpPut("myWorks")]
+        public async Task<IActionResult> UpdateNote(ChangeNoteRequest note)
+        {
+            Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
+
+            var updateNoteCommand = new UpdateNoteCommand(note.NoteId, userId, note.Name, note.Text);
+
+            var noteResult = await _sender.Send(updateNoteCommand);
+
+            return Ok();
         }
     }
 }
