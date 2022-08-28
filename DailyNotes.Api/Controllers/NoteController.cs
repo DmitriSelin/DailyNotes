@@ -40,7 +40,7 @@ namespace DailyNotes.Api.Controllers
         }
 
         [HttpPut("myWorks")]
-        public async Task<IActionResult> UpdateNote(UpdateNoteRequest note)
+        public async Task<IActionResult> EditNote(UpdateNoteRequest note)
         {
             Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 

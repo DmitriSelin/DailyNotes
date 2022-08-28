@@ -24,7 +24,7 @@ namespace DailyNotes.Application.Notes.Commands.UpdateNote
             }
 
             note.Name = request.Name;
-            note.Name = request.Name;
+            note.Text = request.Text;
 
             await _dailyNotesDbContext.SaveChangesAsync(cancellationToken);
 
