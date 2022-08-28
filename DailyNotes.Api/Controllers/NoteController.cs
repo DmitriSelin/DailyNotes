@@ -52,7 +52,7 @@ namespace DailyNotes.Api.Controllers
         }
 
         [HttpDelete("myWorks")]
-        public async Task<IActionResult> DeleteNote(Guid noteId)
+        public async Task<IActionResult> DeleteNote([FromBody] Guid noteId)
         {
             Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 
