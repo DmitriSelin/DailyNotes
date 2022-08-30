@@ -6,6 +6,7 @@ using DailyNotes.Application.Common.Interfaces.Authentication;
 using DailyNotes.Application.Notes.Commands.CreateNote;
 using DailyNotes.Application.Notes.Commands.UpdateNote;
 using DailyNotes.Application.Notes.Commands.DeleteNote;
+using DailyNotes.Application.Notes.Queries.GetListNote;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -46,9 +47,27 @@ namespace DailyNotes.Api.Controllers
 
             var updateNoteCommand = new UpdateNoteCommand(note.NoteId, userId, note.Name, note.Text);
 
-            var noteResult = await _sender.Send(updateNoteCommand);
+            await _sender.Send(updateNoteCommand);
 
             return Ok();
+        }
+
+        [HttpGet("myWorks/all")]
+        public async Task<IActionResult> GetListNotesNames()
+        {
+            Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
+
+            var getListNoteQuery = new GetListNoteQuery(userId);
+
+            var noteNames = await _sender.Send(getListNoteQuery);
+
+            return Ok(noteNames);
+        }
+
+        [HttpGet("myWorks")]
+        public async Task<IActionResult> GetNoteByName()
+        {
+            throw new Exception();
         }
 
         [HttpDelete("myWorks")]
@@ -58,7 +77,7 @@ namespace DailyNotes.Api.Controllers
 
             var deleteNoteCommand = new DeleteNoteCommand(noteId, userId);
 
-            var noteResult = await _sender.Send(deleteNoteCommand);
+            await _sender.Send(deleteNoteCommand);
 
             return Ok();
         }
