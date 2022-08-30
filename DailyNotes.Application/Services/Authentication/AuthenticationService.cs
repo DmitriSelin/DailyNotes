@@ -16,7 +16,12 @@ namespace DailyNotes.Application.Services.Authentication
             _userRepository = userRepository;
         }
 
-        public AuthenticationResult Login(string email, string password)
+        public async Task<AuthenticationResult> LoginAsync(string email, string password)
+        {
+            return await Task.Run(() => Login(email, password));
+        }
+
+        private AuthenticationResult Login(string email, string password)
         {
             User? user = _userRepository.GetUserByEmailAsync(email).Result;
 
@@ -35,7 +40,13 @@ namespace DailyNotes.Application.Services.Authentication
             return new AuthenticationResult(user, token);
         }
 
-        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+        public async Task<AuthenticationResult> RegisterAsync(
+            string firstName, string lastName, string email, string password)
+        {
+            return await Task.Run(() => Register(firstName, lastName, email, password));
+        }
+
+        private AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
             User? user = _userRepository.GetUserByEmailAsync(email).Result;
 

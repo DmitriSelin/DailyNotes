@@ -17,9 +17,9 @@ namespace DailyNotes.Api.Controllers
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            var authenticationResult = _authenticationService.Register(
+            var authenticationResult = await _authenticationService.RegisterAsync(
                 request.FirstName, request.LastName,
                 request.Email, request.Password);
 
@@ -32,9 +32,9 @@ namespace DailyNotes.Api.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            var authenticationResult = _authenticationService.Login(request.Email, request.Password);
+            var authenticationResult = await _authenticationService.LoginAsync(request.Email, request.Password);
 
             var response = new AuthenticationResponse(
                 authenticationResult.User.Id, authenticationResult.User.FirstName,
