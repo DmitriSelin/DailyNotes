@@ -1,10 +1,9 @@
 ﻿using DailyNotes.Application.Common.Interfaces.Persistence;
-using DailyNotes.Domain.Entities;
 using MediatR;
 
 namespace DailyNotes.Application.Notes.Queries.GetListNote
 {
-    public class GetListNotesQueryHandler : IRequestHandler<GetListNoteQuery, ListNotes>
+    public class GetListNotesQueryHandler : IRequestHandler<GetListNoteQuery, List<NoteVm>>
     {
         private readonly IDailyNotesDbContext _dbContext;
 
@@ -13,23 +12,23 @@ namespace DailyNotes.Application.Notes.Queries.GetListNote
             _dbContext = dbContext;
         }
 
-        public async Task<ListNotes> Handle(GetListNoteQuery request, CancellationToken cancellationToken)
+        public async Task<List<NoteVm>> Handle(GetListNoteQuery request, CancellationToken cancellationToken)
         {
-            var noteList = _dbContext.Notes.Where(user => user.UserId == request.UserId).ToList();
+            var notes = _dbContext.Notes.Where(user => user.UserId == request.UserId).ToList();
 
-            if (noteList.Count == 0)
+            if (notes.Count == 0)
             {
                 throw new Exception();
             }
 
-            var noteNames = new List<string>();
+            var noteVmList = new List<NoteVm>();
 
-            foreach(var note in noteList)
+            foreach (var note in notes)
             {
-                noteNames.Add(note.Name);
+                noteVmList.Add(new NoteVm(note.Id, note.Name));
             }
 
-            return new ListNotes(noteNames);
+            return noteVmList;
         }
     }
 }

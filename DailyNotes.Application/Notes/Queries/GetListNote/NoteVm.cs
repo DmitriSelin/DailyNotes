@@ -1,4 +1,4 @@
 ﻿namespace DailyNotes.Application.Notes.Queries.GetListNote
 {
-    public record ListNotes(List<string> NoteNames);
+    public record NoteVm(Guid NoteId, string NoteName);
 }

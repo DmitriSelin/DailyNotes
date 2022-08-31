@@ -53,21 +53,15 @@ namespace DailyNotes.Api.Controllers
         }
 
         [HttpGet("myWorks/all")]
-        public async Task<IActionResult> GetListNotesNames()
+        public async Task<IActionResult> GetNoteList()
         {
             Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 
             var getListNoteQuery = new GetListNoteQuery(userId);
 
-            var noteNames = await _sender.Send(getListNoteQuery);
+            var notes = await _sender.Send(getListNoteQuery);
 
-            return Ok(noteNames);
-        }
-
-        [HttpGet("myWorks")]
-        public async Task<IActionResult> GetNoteByName()
-        {
-            throw new Exception();
+            return Ok(notes);
         }
 
         [HttpDelete("myWorks")]
