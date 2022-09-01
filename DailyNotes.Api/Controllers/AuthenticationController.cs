@@ -34,7 +34,8 @@ namespace DailyNotes.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
-            var authenticationResult = await _authenticationService.LoginAsync(request.Email, request.Password);
+            var authenticationResult = await _authenticationService.LoginAsync(
+                request.Email, request.Password);
 
             var response = new AuthenticationResponse(
                 authenticationResult.User.Id, authenticationResult.User.FirstName,

@@ -23,7 +23,25 @@ namespace DailyNotes.Api.Controllers
             _sender = sender;
             _jwtTokenDecoder = jwtTokenDecoder;
         }
-        
+
+        [HttpGet("myWorks")]
+        public async Task<IActionResult> GetNoteList()
+        {
+            Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
+
+            var getListNoteQuery = new GetListNoteQuery(userId);
+
+            var notes = await _sender.Send(getListNoteQuery);
+
+            return Ok(notes);
+        }
+
+        [HttpGet("myWorks/select")]
+        public async Task<IActionResult> GetSelectNote()
+        {
+            return null;
+        }
+
         [HttpPost("myWorks")]
         public async Task<IActionResult> CreateNote(NoteRequest noteRequest)
         {
@@ -50,18 +68,6 @@ namespace DailyNotes.Api.Controllers
             await _sender.Send(updateNoteCommand);
 
             return Ok();
-        }
-
-        [HttpGet("myWorks/all")]
-        public async Task<IActionResult> GetNoteList()
-        {
-            Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
-
-            var getListNoteQuery = new GetListNoteQuery(userId);
-
-            var notes = await _sender.Send(getListNoteQuery);
-
-            return Ok(notes);
         }
 
         [HttpDelete("myWorks")]
