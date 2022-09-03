@@ -1,5 +1,6 @@
 ﻿using DailyNotes.Application.Common.Interfaces.Persistence;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace DailyNotes.Application.Notes.Queries.GetListNote
 {
@@ -14,7 +15,8 @@ namespace DailyNotes.Application.Notes.Queries.GetListNote
 
         public async Task<List<NoteVm>> Handle(GetListNoteQuery request, CancellationToken cancellationToken)
         {
-            var notes = _dbContext.Notes.Where(user => user.UserId == request.UserId).ToList();
+            var notes = await
+                _dbContext.Notes.Where(user => user.UserId == request.UserId).ToListAsync();
 
             if (notes.Count == 0)
             {
