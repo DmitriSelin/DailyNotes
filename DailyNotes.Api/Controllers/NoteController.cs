@@ -7,6 +7,7 @@ using DailyNotes.Application.Notes.Commands.CreateNote;
 using DailyNotes.Application.Notes.Commands.UpdateNote;
 using DailyNotes.Application.Notes.Commands.DeleteNote;
 using DailyNotes.Application.Notes.Queries.GetListNote;
+using DailyNotes.Application.Notes.Queries.GetNote;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -36,10 +37,20 @@ namespace DailyNotes.Api.Controllers
             return Ok(notes);
         }
 
-        [HttpGet("myWorks/select")]
-        public async Task<IActionResult> GetSelectNote()
+        [HttpGet("myWorks/{id}")]
+        public async Task<IActionResult> GetSelectNote(Guid id)
         {
-            return null;
+            Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
+
+            var getNoteQuery = new GetNoteQuery(id, userId);
+
+            var noteResult = await _sender.Send(getNoteQuery);
+
+            var noteResponse = new NoteResponse(
+                noteResult.Note.Id, noteResult.Note.Name,
+                noteResult.Note.Text, noteResult.Note.CreationDate.ToString());
+
+            return Ok(noteResponse);
         }
 
         [HttpPost("myWorks")]
@@ -53,7 +64,7 @@ namespace DailyNotes.Api.Controllers
 
             var noteResponse = new NoteResponse(
                 noteResult.Note.Id, noteResult.Note.Name,
-                noteResult.Note.CreationDate.ToString());
+                noteResult.Note.Text, noteResult.Note.CreationDate.ToString());
 
             return Ok(noteResponse);
         }

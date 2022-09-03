@@ -6,14 +6,17 @@
 
         public string Name { get; set; } = null!;
 
+        public string Text { get; set; } = null!;
+
         public string CreationDate { get; set; } = null!;
 
         public NoteResponse() { } 
 
-        public NoteResponse(Guid noteId, string name, string creationDate)
+        public NoteResponse(Guid noteId, string name, string text, string creationDate)
         {
             NoteId = noteId;
             Name = name;
+            Text = text;
             CreationDate = creationDate;
         }
 
