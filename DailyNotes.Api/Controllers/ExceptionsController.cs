@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DailyNotes.Api.Controllers
 {
@@ -6,9 +7,11 @@ namespace DailyNotes.Api.Controllers
     public class ExceptionsController : ControllerBase
     {
         [Route("/error")]
-        public IActionResult Eror()
+        public IActionResult Error() 
         {
-            return Problem();
+            Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+            return Problem(title: exception?.Message, statusCode: 409);
         }
     }
 }
