@@ -66,7 +66,6 @@ namespace DailyNotes.Api.Errors
 
             if (title != null)
             {
-                // For validation problem details, don't overwrite the default title with null.
                 problemDetails.Title = title;
             }
 
@@ -87,6 +86,7 @@ namespace DailyNotes.Api.Errors
             }
 
             var traceId = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
+
             if (traceId != null)
             {
                 problemDetails.Extensions["traceId"] = traceId;

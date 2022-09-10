@@ -11,7 +11,7 @@ namespace DailyNotes.Api.Controllers
         {
             Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-            return Problem(title: exception?.Message, statusCode: 409);
+            return Problem();
         }
     }
 }
