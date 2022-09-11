@@ -92,6 +92,8 @@ namespace DailyNotes.Api.Errors
             {
                 problemDetails.Extensions["traceId"] = traceId;
             }
+
+            problemDetails.Extensions.Add("p1", "v1");
         }
     }
 }
