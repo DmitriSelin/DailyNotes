@@ -23,13 +23,11 @@ namespace DailyNotes.Infrastructure
         {
             services.AddAuth(configuration);
 
-            var connectionString = configuration["DbConnectionString"];
-
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
             services.AddDbContext<DailyNotesDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(configuration.GetConnectionString("SQLServerConnection")); ;
             });
 
             services.AddScoped<IDailyNotesDbContext, DailyNotesDbContext>();
