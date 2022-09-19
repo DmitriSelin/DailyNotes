@@ -1,6 +1,7 @@
 ﻿using DailyNotes.Application.Common.Persistence;
 using DailyNotes.Domain.Entities;
 using DailyNotes.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace DailyNotes.Infrastructure.Persistence
 {
@@ -22,22 +23,12 @@ namespace DailyNotes.Infrastructure.Persistence
 
         public async Task<User?> GetUserByIdAsync(Guid userId)
         {
-            return await Task.Run(() => GetUserById(userId));
-        }
-
-        private User? GetUserById(Guid userId)
-        {
-            return _dbContext.Users.FirstOrDefault(user => user.Id == userId);
+            return await _dbContext.Users.FirstOrDefaultAsync(user => user.Id == userId);
         }
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return await Task.Run(() => GetUserByEmail(email));
-        }
-
-        private User? GetUserByEmail(string email)
-        {
-            return _dbContext.Users.FirstOrDefault(x => x.Email == email);
+            return await _dbContext.Users.FirstOrDefaultAsync(user => user.Email == email);
         }
     }
 }
