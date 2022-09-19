@@ -55,9 +55,7 @@ namespace DailyNotes.Application.Services.Authentication
                 throw new UserException("User with the same email already exists");
             }
 
-            var userId = Guid.NewGuid();
-
-            user = new User(userId, firstName, lastName, email, password);
+            user = new User(Guid.NewGuid(), firstName, lastName, email, password);
 
             _userRepository.AddUserAsync(user);
 

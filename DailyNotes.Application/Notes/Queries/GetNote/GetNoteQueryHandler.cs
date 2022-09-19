@@ -17,7 +17,7 @@ namespace DailyNotes.Application.Notes.Queries.GetNote
         public async Task<NoteResult> Handle(GetNoteQuery request, CancellationToken cancellationToken)
         {
             var note = await _context.Notes.FirstOrDefaultAsync(
-                n => n.Id == request.NoteId && n.UserId == request.UserId);
+                entity => entity.Id == request.NoteId && entity.UserId == request.UserId);
 
             if (note == null)
             {

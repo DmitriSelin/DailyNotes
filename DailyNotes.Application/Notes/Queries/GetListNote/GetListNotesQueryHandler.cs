@@ -16,7 +16,7 @@ namespace DailyNotes.Application.Notes.Queries.GetListNote
         public async Task<List<NoteVm>> Handle(GetListNoteQuery request, CancellationToken cancellationToken)
         {
             var notes = await
-                _dbContext.Notes.Where(user => user.UserId == request.UserId).ToListAsync();
+                _dbContext.Notes.Where(note => note.UserId == request.UserId).ToListAsync();
 
             if (notes.Count == 0)
             {
