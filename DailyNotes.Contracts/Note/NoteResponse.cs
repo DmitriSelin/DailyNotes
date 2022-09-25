@@ -10,7 +10,7 @@
 
         public string CreationDate { get; set; } = null!;
 
-        public NoteResponse() { } 
+        public NoteResponse() { }
 
         public NoteResponse(Guid noteId, string name, string text, string creationDate)
         {

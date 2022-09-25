@@ -1,6 +1,8 @@
-﻿using DailyNotes.Application.Common.Interfaces.Persistence;
+﻿using DailyNotes.Application.Common.Exceptions;
+using DailyNotes.Application.Common.Interfaces.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace DailyNotes.Application.Notes.Queries.GetListNote
 {
@@ -20,7 +22,8 @@ namespace DailyNotes.Application.Notes.Queries.GetListNote
 
             if (notes.Count == 0)
             {
-                throw new Exception();
+                throw new NoteException("This user has no notes", "You haven't created any notes yet",
+                    (int)HttpStatusCode.NotFound);
             }
 
             var noteVmList = new List<NoteVm>();

@@ -12,7 +12,6 @@ namespace DailyNotes.Infrastructure.Authentication
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
         private readonly IDateTimeProvider _dateTimeProvider;
-
         private readonly JwtSettings _jwtSettings;
 
         public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions)

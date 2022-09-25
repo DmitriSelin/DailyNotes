@@ -1,6 +1,8 @@
-﻿using DailyNotes.Application.Common.Interfaces.Persistence;
+﻿using DailyNotes.Application.Common.Exceptions;
+using DailyNotes.Application.Common.Interfaces.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace DailyNotes.Application.Notes.Commands.DeleteNote
 {
@@ -20,7 +22,8 @@ namespace DailyNotes.Application.Notes.Commands.DeleteNote
 
             if (note == null || note.UserId != request.UserId)
             {
-                throw new Exception("There are no note with this id");
+                throw new NoteException("There are no note with this id", "Can not delete this note",
+                    (int)HttpStatusCode.NotAcceptable);
             }
 
             _dailyNotesDbContext.Notes.Remove(note);

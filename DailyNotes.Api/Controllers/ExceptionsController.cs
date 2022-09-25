@@ -17,7 +17,8 @@ namespace DailyNotes.Api.Controllers
             {
                 case UserException userException:
                     return Problem(title: userException.MessageForUser, statusCode: userException.StatusCode);
-                case Exception simpleException:
+                case NoteException noteException:
+                    return Problem(title: noteException.MessageForUser, statusCode: noteException.StatusCode);
                 default:
                     return Problem(title: exception?.Message, statusCode: (int)HttpStatusCode.InternalServerError);
             }

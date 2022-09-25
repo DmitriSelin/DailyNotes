@@ -1,7 +1,9 @@
-﻿using DailyNotes.Application.Common.Interfaces.Persistence;
+﻿using DailyNotes.Application.Common.Exceptions;
+using DailyNotes.Application.Common.Interfaces.Persistence;
 using DailyNotes.Application.Notes.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace DailyNotes.Application.Notes.Queries.GetNote
 {
@@ -21,7 +23,8 @@ namespace DailyNotes.Application.Notes.Queries.GetNote
 
             if (note == null)
             {
-                throw new Exception("There are no notes with this id");
+                throw new NoteException("There are no notes with this id", "Can not give this note",
+                    (int)HttpStatusCode.NotFound);
             }
 
             return new NoteResult(note);
