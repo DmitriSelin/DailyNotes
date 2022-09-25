@@ -37,12 +37,12 @@ namespace DailyNotes.Api.Controllers
             return Ok(notes);
         }
 
-        [HttpGet("myWorks/{id}")]
-        public async Task<IActionResult> GetSelectNote(Guid id)
+        [HttpGet("myWorks/{noteId}")]
+        public async Task<IActionResult> GetSelectedNote(Guid noteId)
         {
             Guid userId = _jwtTokenDecoder.GetUserId(HttpContext);
 
-            var getNoteQuery = new GetNoteQuery(id, userId);
+            var getNoteQuery = new GetNoteQuery(noteId, userId);
 
             var noteResult = await _sender.Send(getNoteQuery);
 
